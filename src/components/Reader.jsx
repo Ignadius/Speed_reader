@@ -16,7 +16,8 @@ export default function Reader({ currentWord }) {
     if (!word) return "Ready?";
 
     const orpIndex = getORPIndex(word);
-
+//I separated the logic responsible for finding and highlighting the center character from the JSX rendering logic. 
+//This makes the component easier to read, test, and maintain
     return (
       <div className="spritz-word">
         <span className="left">{word.slice(0, orpIndex)}</span>
@@ -30,6 +31,5 @@ export default function Reader({ currentWord }) {
 
   return <div className="reader-word">{getHighlightedWord(currentWord)}</div>;
 }
-//I separated the logic responsible for finding and highlighting the center character from the JSX rendering logic. 
-//This makes the component easier to read, test, and maintain
+
 //getHighlightedWord() 
