@@ -30,4 +30,6 @@ export default function Reader({ currentWord }) {
 
   return <div className="reader-word">{getHighlightedWord(currentWord)}</div>;
 }
-// getHighlightedWord() -> I separated the logic responsible for finding and highlighting the center character from the JSX rendering logic. This makes the component easier to read, test, and maintain
+//I separated the logic responsible for finding and highlighting the center character from the JSX rendering logic. 
+//This makes the component easier to read, test, and maintain
+//getHighlightedWord() 
