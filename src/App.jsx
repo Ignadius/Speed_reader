@@ -11,7 +11,7 @@ import Reader from "./components/Reader";
 import Controls from "./components/Controls";
 import FullscreenReader from "./components/FullscreenReader";
 import WpmSelector from "./components/WpmSelector";
-import ProgressBar from "./components/ProgressBar";
+import Progress from "./components/Progress";
 import PdfUpload from "./components/PdfUpload";
 import TextPreview from "./components/TextPreview";
 
@@ -71,6 +71,7 @@ export default function App() {
   const currentWord = words[wordIndex] || "";
 
   // Reading progress percentage.
+  //It doesnt own any data, calculate the reading progress
   const progress =
     words.length > 0 ? ((wordIndex + 1) / words.length) * 100 : 0;
 
@@ -193,18 +194,6 @@ export default function App() {
   }
   return (
     <div className={`app ${playing ? "reading-mode" : ""}`}>
-      <div className="document-actions">
-        <PdfUpload
-          onTextExtracted={setText}
-          setPdfPages={setPdfPages}
-          setDocumentName={setDocumentName}
-        />
-        {text.trim() && (
-          <button className="document-btn" onClick={resetReading}>
-            Clear
-          </button>
-        )}
-      </div>
       <div className="top-actions">
         <label className="theme-switch">
           <input type="checkbox" checked={isDark} onChange={toggleDarkMode} />
@@ -243,15 +232,24 @@ export default function App() {
 
       <div className="reader-container">
         <Reader currentWord={currentWord} />
+
+        <div className="document-actions">
+          <PdfUpload
+            onTextExtracted={setText}
+            setPdfPages={setPdfPages}
+            setDocumentName={setDocumentName}
+          />
+          {text.trim() && (
+            <button className="document-btn" onClick={resetReading}>
+              Clear
+            </button>
+          )}
+        </div>
       </div>
 
-      <ProgressBar progress={progress} />
       {isFinished && <p>🎉 Reading complete!</p>}
 
-      <p>
-        Words:{" "}
-        {words.length > 0 ? `${wordIndex + 1} / ${words.length}` : "0 / 0"}
-      </p>
+      <Progress progress={progress} />
 
       <div className="selector">
         <WpmSelector
@@ -260,6 +258,7 @@ export default function App() {
           decreaseWpm={decreaseWpm}
         />
       </div>
+
       <Controls
         startReading={startReading}
         pauseReading={pauseReading}

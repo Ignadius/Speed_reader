@@ -1,5 +1,5 @@
 import Reader from "./Reader";
-import ProgressBar from "./ProgressBar";
+import Progress from "./Progress";
 import "../App.css";
 
 export default function FullscreenReader({
@@ -22,7 +22,7 @@ export default function FullscreenReader({
 
       <Reader currentWord={currentWord} />
 
-      <ProgressBar progress={progress} />
+      <Progress progress={progress} />
 
       <div className="fullscreen-controls">
         {isFinished ? (
@@ -41,9 +41,6 @@ export default function FullscreenReader({
       </div>
 
       {isFinished && <p>🎉 Reading complete!</p>}
-      <p>
-        Words: {currentWordNumber} / {totalWords}
-      </p>
     </div>
   );
 }
