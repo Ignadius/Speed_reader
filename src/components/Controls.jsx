@@ -3,6 +3,8 @@ export default function Controls({
   pauseReading,
   resumeReading,
   restartReading,
+  skipBackward,
+  skipForward,
   playing,
   words,
   isFinished,
@@ -14,20 +16,31 @@ export default function Controls({
           ▶
         </button>
       )}
-      {words.length > 0 &&
-        (playing ? (
-          <button className="pause-btn" onClick={pauseReading}>
-            ⏸
+      {words.length > 0 && (
+        <>
+          <button className="skip-btn" onClick={skipBackward}>
+            -10
           </button>
-        ) : isFinished ? (
-          <button className="restart-btn" onClick={restartReading}>
-            ↺
+
+          {playing ? (
+            <button className="pause-btn" onClick={pauseReading}>
+              ⏸
+            </button>
+          ) : isFinished ? (
+            <button className="restart-btn" onClick={restartReading}>
+              ↺
+            </button>
+          ) : (
+            <button className="resume-btn" onClick={resumeReading}>
+              ▶
+            </button>
+          )}
+
+          <button className="skip-btn" onClick={skipForward}>
+            +10
           </button>
-        ) : (
-          <button className="resume-btn" onClick={resumeReading}>
-            ▶
-          </button>
-        ))}
+        </>
+      )}
     </div>
   );
 }

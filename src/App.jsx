@@ -207,13 +207,12 @@ export default function App() {
       </div>
       <div className="top-actions">
         <label className="theme-switch">
-          <span className="theme-icon">☀️</span>
-
           <input type="checkbox" checked={isDark} onChange={toggleDarkMode} />
 
-          <span className="slider"></span>
-
-          <span className="theme-icon">🌙</span>
+          <span className="slider">
+            <span className="theme-icon">☀️</span>
+            <span className="theme-icon">🌙</span>
+          </span>
         </label>
 
         <button
@@ -225,7 +224,7 @@ export default function App() {
         </button>
       </div>
 
-      <h1>Speed Reader</h1>
+      <h1 className="app-title">Speed Reader</h1>
       {documentName && (
         <div className="document-name">
           <strong>Currently Reading:</strong> 📄 {documentName}
@@ -242,6 +241,18 @@ export default function App() {
         <TextInput text={text} setText={setText} />
       )}
 
+      <div className="reader-container">
+        <Reader currentWord={currentWord} />
+      </div>
+
+      <ProgressBar progress={progress} />
+      {isFinished && <p>🎉 Reading complete!</p>}
+
+      <p>
+        Words:{" "}
+        {words.length > 0 ? `${wordIndex + 1} / ${words.length}` : "0 / 0"}
+      </p>
+
       <div className="selector">
         <WpmSelector
           wpm={wpm}
@@ -254,28 +265,12 @@ export default function App() {
         pauseReading={pauseReading}
         resumeReading={resumeReading}
         restartReading={restartReading}
+        skipBackward={skipBackward}
+        skipForward={skipForward}
         playing={playing}
         words={words}
         isFinished={isFinished}
       />
-      <div className="reader-container">
-        <button className="skip-btn" onClick={skipBackward}>
-          -10
-        </button>
-
-        <Reader currentWord={currentWord} />
-
-        <button className="skip-btn" onClick={skipForward}>
-          +10
-        </button>
-      </div>
-
-      <ProgressBar progress={progress} />
-      {isFinished && <p>🎉 Reading complete!</p>}
-      <p>
-        Words:{" "}
-        {words.length > 0 ? `${wordIndex + 1} / ${words.length}` : "0 / 0"}
-      </p>
     </div>
   );
 }
