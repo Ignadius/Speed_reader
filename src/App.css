@@ -11,8 +11,9 @@
   min-height: 100%;
   margin: 0 auto;
   padding: 84px 8pt 8pt;
+
   text-align: center;
-  gap: 8pt;
+  gap: 15px;
 }
 
 .app-title {
@@ -354,7 +355,6 @@ button.skip-btn {
   justify-content: center;
 
   gap: 1rem;
-
   margin: 1rem 0;
 }
 
@@ -390,8 +390,6 @@ button.skip-btn {
 
   position: relative;
   z-index: 20;
-
-  margin: 40px 0;
 
   font-size: 2.5rem;
   font-weight: bold;
@@ -463,7 +461,15 @@ button.skip-btn {
   background: #ddd;
   border-radius: 999px;
   overflow: hidden;
-  margin: 20px auto;
+  margin: 20px auto 4px;
+}
+
+.progress-container + p {
+  margin: 0;
+}
+
+.progress-container + p + .selector .wpm-selector {
+  margin-top: 4px;
 }
 
 .progress-fill {
