@@ -24,20 +24,12 @@ export default function App() {
   const [text, setText] = useState("");
 
   // Stores PDF page information.
-  // Keeping pages separate allows future features such as:
-  // - Current page tracking
-  // - Jump to page
-  // - Read page ranges
   const [pdfPages, setPdfPages] = useState([]);
 
   // Array of words used by the reader engine.
   const [words, setWords] = useState([]);
 
   // Current reading position.
-  //
-  // Example:
-  // wordIndex = 4
-  // means the fifth word is currently displayed.
   const [wordIndex, setWordIndex] = useState(0);
 
   // Reading speed in Words Per Minute.
@@ -47,9 +39,6 @@ export default function App() {
   const [wpm, setWpm] = useState(250);
 
   // Controls whether the reader is currently running.
-  //
-  // true  -> reading
-  // false -> paused/stopped
   const [playing, setPlaying] = useState(false);
 
   // Name of the uploaded PDF file.
@@ -82,11 +71,6 @@ export default function App() {
   const currentWord = words[wordIndex] || "";
 
   // Reading progress percentage.
-  //
-  // Example:
-  // wordIndex = 4
-  // words.length = 10
-  // progress = 50
   const progress =
     words.length > 0 ? ((wordIndex + 1) / words.length) * 100 : 0;
 
@@ -98,11 +82,6 @@ export default function App() {
 
   // Converts text into an array of words
   // for the clickable preview component.
-  //
-  // Example:
-  // "Hello React world"
-  // becomes:
-  // ["Hello", "React", "world"]
   const previewWords = text.trim() ? text.trim().split(/\s+/) : [];
 
   // ========================================
