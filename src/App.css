@@ -206,7 +206,19 @@ textarea {
   padding: 2px 4px;
   cursor: pointer;
 }
+.document-card {
+  margin-top: 7rem;
 
+  padding: 1.5rem;
+
+  background: var(--surface-color);
+
+  border: 1px solid var(--border-color);
+
+  border-radius: 12px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
 /* ========================================
    CONTROLS
 ======================================== */
@@ -310,9 +322,6 @@ button.skip-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 1rem;
-  margin: 1rem 0;
 }
 
 .wpm-selector button {
@@ -336,18 +345,31 @@ button.skip-btn {
 
   font-size: 1.1rem;
   font-weight: 600;
+  gap: 0.1rem;
 }
 /* ========================================
    READER
 ======================================== */
-
-.reader-word {
+.reader-section {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  max-width: 450px;
 
-  position: relative;
-  z-index: 20;
+  flex-direction: column;
 
+  align-items: center;
+}
+
+.reader-layout {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 2rem;
+}
+.reader-word {
   font-size: 2.5rem;
   font-weight: bold;
 
@@ -358,16 +380,35 @@ button.skip-btn {
   color: var(--highlight-color);
 }
 
+.reader-sidebar {
+  width: 180px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
 .reader-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
-  gap: 1.3rem;
+  margin-top: 1.5rem;
+  gap: 5rem;
 }
 
+.reader-display {
+  margin-left: -50px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* Document actions */
 .document-actions {
+  width: 180px;
+
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -399,12 +440,24 @@ button.skip-btn {
 .document-btn:active {
   transform: scale(0.97);
 }
+
+.reader-card {
+  margin-top: 2rem;
+  padding: 2rem;
+
+  background: var(--surface-color);
+
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
 /* ========================================
    SPRITZ BOX
 ======================================== */
 
 .spritz-word {
-  width: 450px;
+  width: 100%;
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;

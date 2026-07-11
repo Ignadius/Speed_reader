@@ -214,62 +214,69 @@ export default function App() {
       </div>
 
       <h1 className="app-title">Speed Reader</h1>
+
       {documentName && (
         <div className="document-name">
           <strong>Currently Reading:</strong> 📄 {documentName}
         </div>
       )}
       {totalPages > 0 && <p className="pdf-info">📑 Pages: {totalPages}</p>}
-      {text.trim() ? (
-        <TextPreview
-          words={previewWords}
-          wordIndex={wordIndex}
-          setWordIndex={setWordIndex}
-        />
-      ) : (
-        <TextInput text={text} setText={setText} />
-      )}
-
-      <div className="reader-container">
-        <Reader currentWord={currentWord} />
-
-        <div className="document-actions">
-          <PdfUpload
-            onTextExtracted={setText}
-            setPdfPages={setPdfPages}
-            setDocumentName={setDocumentName}
+      <div className="document-card">
+        {text.trim() ? (
+          <TextPreview
+            words={previewWords}
+            wordIndex={wordIndex}
+            setWordIndex={setWordIndex}
           />
-          {text.trim() && (
-            <button className="document-btn" onClick={resetReading}>
-              Clear
-            </button>
-          )}
+        ) : (
+          <TextInput text={text} setText={setText} />
+        )}
+      </div>
+
+      <div className="reader-card">
+        <div className="reader-layout">
+          <div className="reader-sidebar">
+            <WpmSelector
+              wpm={wpm}
+              increaseWpm={increaseWpm}
+              decreaseWpm={decreaseWpm}
+            />
+
+            <Controls
+              startReading={startReading}
+              pauseReading={pauseReading}
+              resumeReading={resumeReading}
+              restartReading={restartReading}
+              skipBackward={skipBackward}
+              skipForward={skipForward}
+              playing={playing}
+              words={words}
+              isFinished={isFinished}
+            />
+          </div>
+
+          <div className="reader-display">
+            <Reader currentWord={currentWord} />
+            <Progress progress={progress} />
+          </div>
+
+          <div className="document-actions">
+            <PdfUpload
+              onTextExtracted={setText}
+              setPdfPages={setPdfPages}
+              setDocumentName={setDocumentName}
+            />
+
+            {text.trim() && (
+              <button className="document-btn" onClick={resetReading}>
+                Clear
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
       {isFinished && <p>🎉 Reading complete!</p>}
-
-      <Progress progress={progress} />
-
-      <div className="selector">
-        <WpmSelector
-          wpm={wpm}
-          increaseWpm={increaseWpm}
-          decreaseWpm={decreaseWpm}
-        />
-      </div>
-
-      <Controls
-        startReading={startReading}
-        pauseReading={pauseReading}
-        resumeReading={resumeReading}
-        restartReading={restartReading}
-        skipBackward={skipBackward}
-        skipForward={skipForward}
-        playing={playing}
-        words={words}
-        isFinished={isFinished}
-      />
     </div>
   );
 }
